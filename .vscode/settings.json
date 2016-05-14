@@ -1,0 +1,10 @@
+// Coloque su configuración en este archivo para sobrescribir la configuración predeterminada y de usuario.
+{
+    "files.exclude": {
+        "app/*.js": true,
+        "app/*.map": true,
+        ".vscode": true,
+        "node_modules": true,
+        "typings": true
+    }
+}
