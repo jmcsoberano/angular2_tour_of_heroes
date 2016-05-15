@@ -1,23 +1,31 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RouteParams } from '@angular/router-deprecated';
 
 import { Heroe } from './heroe';
+import { HeroeService } from './heroe.service';
 
 @Component({
   selector: 'mi-heroe-detalle',
-  template: `
-    <div *ngIf="heroe">
-        <h2>{{heroe.nombre}} detalles!</h2>
-        <div>
-            <label>Id: </label>{{heroe.id}}
-        </div>
-        <div>
-            <label>Nombre: </label>
-            <input [(ngModel)]="heroe.nombre" placeholder="nombre">
-        </div>
-    </div>  
-    `
+  templateUrl: 'app/hero-detail.component.html',
+  styleUrls: ['app/hero-detail.component.css']
 })
-export class HeroeDetalleComponent {
-    @Input()
+export class HeroeDetalleComponent implements OnInit {
+    
     heroe: Heroe;
+    
+    constructor(
+    private heroService: HeroeService,
+    private routeParams: RouteParams) {
+    }
+    
+    ngOnInit() {
+        let id = +this.routeParams.get('id');
+        this.heroService.getHeroe(id)
+        .then(hero => this.heroe = hero);
+    }
+    
+    goBack() {
+    window.history.back();
+    }    
+        
 }
