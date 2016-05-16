@@ -5,6 +5,7 @@
         "app/*.map": true,
         ".vscode": true,
         "node_modules": true,
-        "typings": true
+        "typings": true,
+        ".gitignore": true
     }
 }
